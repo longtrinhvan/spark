@@ -1,7 +1,8 @@
-package com.samples.fresher
+package com.samples.fresher.pinot
 
 import org.apache.spark.sql.{ SQLContext, SparkSession }
 import org.apache.spark.{ SparkConf }
+
 object ReadPinot extends App {
   val spark: SparkSession = SparkSession
     .builder()

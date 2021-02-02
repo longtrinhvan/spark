@@ -1,7 +1,8 @@
-package com.samples.fresher
+package com.samples.fresher.spark
 
 import org.apache.spark.sql.{ SQLContext, SparkSession }
 import org.apache.spark.{ SparkConf }
+
 object ReadCSV extends App {
 
   val spark = SparkSession.builder()
@@ -14,7 +15,7 @@ object ReadCSV extends App {
   val sqlContext: SQLContext = spark.sqlContext
 
   val df = sqlContext.read.options(Map("inferSchema" -> "true", "delimiter" -> ",", "header" -> "true"))
-    .csv("src/main/resources/zipcodes.csv")
+    .csv("src/main/resources/spark_input/zipcodes.csv")
   df.show()
 
   df.groupBy("department").sum("salary").show(false)
