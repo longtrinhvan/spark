@@ -13,16 +13,15 @@ object ReadCSV extends App {
 
   val sqlContext: SQLContext = spark.sqlContext
 
-  //read csv with options
   val df = sqlContext.read.options(Map("inferSchema" -> "true", "delimiter" -> ",", "header" -> "true"))
     .csv("src/main/resources/zipcodes.csv")
   df.show()
-  
+
   df.groupBy("department").sum("salary").show(false)
   df.groupBy("department").count().show(false)
-//  df.printSchema()
-//  df.createOrReplaceTempView("TAB")
-//  sqlContext.sql("select * from TAB")
-//    .show(false)
+  df.printSchema()
+  df.createOrReplaceTempView("TAB")
+  sqlContext.sql("select * from TAB")
+  .show(false)
 
 }
